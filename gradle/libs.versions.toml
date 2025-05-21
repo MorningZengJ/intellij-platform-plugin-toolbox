@@ -2,6 +2,7 @@
 # libraries
 junit = "4.13.2"
 opentest4j = "1.3.0"
+jacksons = "2.17.2"
 
 # plugins
 changelog = "2.2.1"
@@ -13,6 +14,17 @@ qodana = "2024.3.4"
 [libraries]
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 opentest4j = { group = "org.opentest4j", name = "opentest4j", version.ref = "opentest4j" }
+
+libraries-jackson-core = { group = "com.fasterxml.jackson.core", name = "jackson-core", version.ref = "jacksons" }
+libraries-jackson-databind = { group = "com.fasterxml.jackson.core", name = "jackson-databind", version.ref = "jacksons" }
+# jackson dataformat
+libraries-jackson-dataformat-csv = { group = "com.fasterxml.jackson.dataformat", name = "jackson-dataformat-csv", version.ref = "jacksons" }
+libraries-jackson-dataformat-properties = { group = "com.fasterxml.jackson.dataformat", name = "jackson-dataformat-properties", version.ref = "jacksons" }
+libraries-jackson-dataformat-toml = { group = "com.fasterxml.jackson.dataformat", name = "jackson-dataformat-toml", version.ref = "jacksons" }
+libraries-jackson-dataformat-xml = { group = "com.fasterxml.jackson.dataformat", name = "jackson-dataformat-xml", version.ref = "jacksons" }
+libraries-jackson-dataformat-yaml = { group = "com.fasterxml.jackson.dataformat", name = "jackson-dataformat-yaml", version.ref = "jacksons" }
+# jackson datatype
+libraries-jackson-datatype-jsr310 = { group = "com.fasterxml.jackson.datatype", name = "jackson-datatype-jsr310", version.ref = "jacksons" }
 
 [plugins]
 changelog = { id = "org.jetbrains.changelog", version.ref = "changelog" }

@@ -1,15 +1,22 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
-    <id>org.jetbrains.plugins.template</id>
-    <name>IntelliJ Platform Plugin Template</name>
-    <vendor>JetBrains</vendor>
+    <id>com.github.MorningZengJ.Toolset</id>
+    <name>Toolset</name>
+    <vendor url="https://github.com/MorningZengJ" email="zengchennihon@gmail.com">Morning Zeng</vendor>
 
     <depends>com.intellij.modules.platform</depends>
+    <depends>com.intellij.modules.json</depends>
 
     <resource-bundle>messages.MyBundle</resource-bundle>
 
     <extensions defaultExtensionNs="com.intellij">
-        <toolWindow factoryClass="org.jetbrains.plugins.template.toolWindow.MyToolWindowFactory" id="MyToolWindow"/>
-        <postStartupActivity implementation="org.jetbrains.plugins.template.startup.MyProjectActivity" />
+        <toolWindow id="Toolset" icon="/images/svg/box.svg" anchor="bottom"
+                    factoryClass="com.github.morningzeng.toolbox.ToolboxWindow"/>
+        <!--        factoryClass="org.jetbrains.plugins.template.toolWindow.MyToolWindowFactory"/>-->
+        <postStartupActivity implementation="org.jetbrains.plugins.template.startup.MyProjectActivity"/>
+
+        <notificationGroup displayType="STICKY_BALLOON" id="remind-notify"
+                           toolWindowId="com.github.MorningZengJ.Toolset" bundle="messages.MyBundle"
+                           key="notification.group.remind-notify"/>
     </extensions>
 </idea-plugin>
