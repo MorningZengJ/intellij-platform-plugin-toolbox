@@ -6,8 +6,9 @@ import com.github.morningzeng.toolbox.model.Children
 import com.github.morningzeng.toolbox.ui.ScrollSupport
 import com.github.morningzeng.toolbox.ui.action.SingleTextFieldDialogAction
 import com.github.morningzeng.toolbox.ui.bar.ActionBar
-import com.github.morningzeng.toolbox.ui.component.Tree2
+import com.github.morningzeng.toolbox.ui.component.Tree
 import com.github.morningzeng.toolbox.utils.ActionUtils
+import com.github.morningzeng.toolbox.utils.ExpandMethodUtils.labelWidth
 import com.github.morningzeng.toolbox.utils.GridBagUtils
 import com.github.morningzeng.toolbox.utils.ScratchFileUtils
 import com.intellij.openapi.actionSystem.ActionUpdateThread
@@ -42,13 +43,13 @@ abstract class AbstractPropDialog<T : Children<T>, P : AbstractPropDialog.Abstra
     protected val selectedAfter: (t: T) -> Unit = {}
 ) : DialogWrapper(project) {
 
-    protected val tree: Tree2<T> = Tree2()
+    protected val tree: Tree<T> = Tree()
 
     private val emptyPanel = JBPanelWithEmptyText()
     private val pane = JBSplitter(false, "prop-dialog-splitter", .3f)
     private val rightPanelMap: MutableMap<T, P> = mutableMapOf()
     private val addActions: AnAction = ActionUtils.drawerActions(
-        "Add Item", "New create crypto prop item", Constants.IconC.BOX, *initGroupAction()
+        "Add Item", "New create crypto prop item", Constants.IconC.ADD_DRAWER, *initGroupAction()
     )
     private val actionBar = ActionBar(*barActions())
 
@@ -84,7 +85,7 @@ abstract class AbstractPropDialog<T : Children<T>, P : AbstractPropDialog.Abstra
     }
 
     fun deleteAction(): AnAction {
-        return object : AnAction(Constants.IconC.BOX) {
+        return object : AnAction(Constants.IconC.REMOVE_RED) {
             override fun actionPerformed(e: AnActionEvent) = delete()
         }
     }
@@ -140,7 +141,7 @@ abstract class AbstractPropDialog<T : Children<T>, P : AbstractPropDialog.Abstra
                 }
 
                 override fun update(e: AnActionEvent) {
-                    e.presentation.setEnabled(tree.isSelectionEmpty)
+                    e.presentation.isEnabled = tree.isSelectionEmpty
                 }
             },
             object : AnAction("KeyPair") {
@@ -181,21 +182,21 @@ abstract class AbstractPropDialog<T : Children<T>, P : AbstractPropDialog.Abstra
                     ScrollSupport.getInstance(tree).verticalAsNeededScrollPane()
                 )
             }
-            .row { it.fill(GridBagUtils.GridBagFill.BOTH).cell().weightY(1.0).add(tree) }
             .build()
             .apply { pane.firstComponent = this }
     }
 
     abstract class AbstractRightPanel<T : Children<T>>(
-        protected open val prop: T,
+        protected val prop: T,
     ) : JBPanel<JBPanelWithEmptyText>() {
 
         private val emptyPanel = JBPanelWithEmptyText()
+        protected val labelWidth = 50
         val titleTextField = LabeledComponent.create<JBTextField>(
             JBTextField(prop.name()), "Name", BorderLayout.WEST
-        )
+        ).apply { labelWidth(labelWidth) }
 
-        init {
+        protected fun initLayout() {
             GridBagUtils.builder(this).apply {
                 if (prop.directory) {
                     row {

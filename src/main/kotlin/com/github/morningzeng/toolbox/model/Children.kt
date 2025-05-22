@@ -1,5 +1,6 @@
 package com.github.morningzeng.toolbox.model
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import com.github.morningzeng.toolbox.Constants.IconC
 import javax.swing.Icon
 
@@ -8,10 +9,11 @@ import javax.swing.Icon
  * @since 2025-05-19
  */
 abstract class Children<T : Children<T>>(
-    open var children: MutableList<T> = mutableListOf(),
-    open var parent: T? = null,
-    open var sorted: Int = 0,
-    open var directory: Boolean = false,
+    var children: MutableList<T> = mutableListOf(),
+    @JsonIgnore
+    var parent: T? = null,
+    var sorted: Int = 0,
+    var directory: Boolean = false,
 ) {
     companion object {
         fun <T : Children<T>> comparable(): Comparator<T?> =

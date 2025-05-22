@@ -35,9 +35,11 @@ class Tree<T : Children<T>> : SimpleTree() {
     }
 
     fun addNodes(ts: MutableList<T>, allowChildren: (T) -> Boolean) {
-        if (ts.isEmpty()) return
-        this.ts.addAll(ts)
-        buildNode(ts, root, allowChildren)
+        if (!ts.isEmpty()) {
+            this.ts.addAll(ts)
+            buildNode(ts, root, allowChildren)
+        }
+        reloadTree(null)
     }
 
     fun create(t: T, allowsChildren: Boolean): DefaultMutableTreeNode {
@@ -109,8 +111,10 @@ class Tree<T : Children<T>> : SimpleTree() {
         if (treeNode != null) treeModelT.reload(treeNode) else {
             val expandedNodes = getExpandedDescendants(TreePath(treeModelT.root))
             treeModelT.reload()
-            while (expandedNodes.hasMoreElements()) {
-                expandPath(expandedNodes.nextElement())
+            expandedNodes?.also {
+                while (it.hasMoreElements()) {
+                    expandPath(it.nextElement())
+                }
             }
         }
     }

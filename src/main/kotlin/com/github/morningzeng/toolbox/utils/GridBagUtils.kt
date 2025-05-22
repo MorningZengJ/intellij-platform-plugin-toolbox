@@ -28,7 +28,7 @@ object GridBagUtils {
     }
 
     sealed class AbstractGrid<T : Container>(
-        protected open var bag: GridBag
+        protected var bag: GridBag
     ) {
 
         open fun fill(fill: GridBagFill): AbstractGrid<T> = this.apply { bag.fill = fill.fill }
@@ -55,7 +55,7 @@ object GridBagUtils {
 
     class Row<T : Container>(
         val builder: GridBagBuilder<T>,
-        override var bag: GridBag
+        bag: GridBag
     ) : AbstractGrid<T>(bag) {
 
         override fun fill(fill: GridBagFill): Row<T> = this.apply { super.fill(fill) }
@@ -73,7 +73,7 @@ object GridBagUtils {
 
     class Cell<T : Container>(
         val row: Row<T>,
-        override var bag: GridBag
+        bag: GridBag
     ) : AbstractGrid<T>(bag) {
 
         override fun fill(fill: GridBagFill): Cell<T> = this.apply { super.fill(fill) }

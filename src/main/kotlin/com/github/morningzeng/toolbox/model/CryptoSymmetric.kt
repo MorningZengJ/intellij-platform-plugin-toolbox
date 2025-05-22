@@ -15,12 +15,11 @@ data class CryptoSymmetric(
     var iv: String = "",
     var ivType: DataToBinaryTypeEnum = DataToBinaryTypeEnum.TEXT,
     var description: String = "",
-    override var directory: Boolean = false,
-    override var sorted: Int = 0,
 ) : Children<CryptoSymmetric>() {
 
-    override var parent: CryptoSymmetric? = null
-    override var children: MutableList<CryptoSymmetric> = mutableListOf()
+    constructor(title: String, directory: Boolean) : this(title) {
+        this.directory = directory
+    }
 
     override fun name(): String = this.title
 

@@ -17,8 +17,8 @@ import javax.swing.JButton
 abstract class AbstractCryptoSymmetricComponent(
     project: Project
 ) : AbstractCryptoComponent<CryptoSymmetric>(project) {
-    private val encryptBtn: JButton = JButton("Encrypt", IconC.BOX)
-    private val decryptBtn: JButton = JButton("Decrypt", IconC.BOX)
+    private val encryptBtn: JButton = JButton("Encrypt", IconC.DOUBLE_ANGLES_DOWN)
+    private val decryptBtn: JButton = JButton("Decrypt", IconC.DOUBLE_ANGLES_UP)
 
     override fun typeReference(): TypeReference<MutableList<CryptoSymmetric>> {
         return object : TypeReference<MutableList<CryptoSymmetric>>() {

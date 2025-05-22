@@ -4,11 +4,13 @@ import com.fasterxml.jackson.core.type.TypeReference
 import com.github.morningzeng.toolbox.enums.DataToBinaryTypeEnum
 import com.github.morningzeng.toolbox.model.CryptoSymmetric
 import com.github.morningzeng.toolbox.ui.component.LanguageTextArea
+import com.github.morningzeng.toolbox.utils.ExpandMethodUtils.labelWidth
 import com.github.morningzeng.toolbox.utils.GridBagUtils
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.ui.ComboBox
 import com.intellij.openapi.ui.LabeledComponent
 import com.intellij.ui.components.JBTextField
+import java.awt.BorderLayout
 
 /**
  * @author Morning Zeng
@@ -55,24 +57,28 @@ class SymmetricPropDialog(
 
     class RightPanel(
         val project: Project,
-        override val prop: CryptoSymmetric,
+        prop: CryptoSymmetric,
     ) : AbstractRightPanel<CryptoSymmetric>(prop) {
 
         val keyTextField = LabeledComponent.create<JBTextField>(
-            JBTextField(prop.key), "Key"
-        )
+            JBTextField(prop.key), "Key", BorderLayout.WEST
+        ).apply { labelWidth(labelWidth) }
         val keyTypeCombo = ComboBox(DataToBinaryTypeEnum.entries.toTypedArray()).apply {
             selectedItem = prop.keyType
         }
         val ivTextField = LabeledComponent.create<JBTextField>(
-            JBTextField(prop.iv), "IV"
-        )
+            JBTextField(prop.iv), "IV", BorderLayout.WEST
+        ).apply { labelWidth(labelWidth) }
         val ivTypeCombo = ComboBox(DataToBinaryTypeEnum.entries.toTypedArray()).apply {
             selectedItem = prop.ivType
         }
         val descriptionTextField = LabeledComponent.create<LanguageTextArea>(
-            LanguageTextArea(project, prop.description), "Desc"
-        )
+            LanguageTextArea(project, prop.description), "Desc", BorderLayout.WEST
+        ).apply { labelWidth(labelWidth) }
+
+        init {
+            super.initLayout()
+        }
 
 
         override fun itemLayout(): (GridBagUtils.GridBagBuilder<AbstractRightPanel<CryptoSymmetric>>) -> Unit {

@@ -1,6 +1,6 @@
 package com.github.morningzeng.toolbox
 
-import com.intellij.openapi.util.IconLoader
+import com.intellij.openapi.util.IconLoader.getIcon
 import java.time.format.DateTimeFormatter
 import javax.swing.Icon
 
@@ -18,9 +18,26 @@ object Constants {
     }
 
     object IconC {
-        val CLASS_LOADER: ClassLoader = ClassLoader.getSystemClassLoader()
-        val BOX: Icon = IconLoader.getIcon("/images/svg/box.svg", CLASS_LOADER)
-        val FOLDER_COLOR: Icon = IconLoader.getIcon("/images/svg/folder_color.svg", CLASS_LOADER)
-        val TREE_NODE: Icon = IconLoader.getIcon("/images/svg/tree_node.svg", CLASS_LOADER)
+        val CLASS_LOADER: ClassLoader = IconC::class.java.getClassLoader()
+        
+        val ADD: Icon = getIcon("/images/svg/add.svg", CLASS_LOADER)
+        val ADD_DRAWER: Icon = getIcon("/images/svg/add_drawer.svg", CLASS_LOADER)
+        val AUTORENEW: Icon = getIcon("/images/svg/autorenew.svg", CLASS_LOADER)
+        val BOX: Icon = getIcon("/images/svg/box.svg", CLASS_LOADER)
+        val CLOCK_COLOR: Icon = getIcon("/images/svg/clock_color.svg", CLASS_LOADER)
+        val DOUBLE_ANGLES_DOWN: Icon = getIcon("/images/svg/double_angles_down.svg", CLASS_LOADER)
+        val DOUBLE_ANGLES_UP: Icon = getIcon("/images/svg/double_angles_up.svg", CLASS_LOADER)
+        val DOUBLE_ANGLES_RIGHT: Icon = getIcon("/images/svg/double_angles_right.svg", CLASS_LOADER)
+        val DOUBLE_ANGLES_LEFT: Icon = getIcon("/images/svg/double_angles_left.svg", CLASS_LOADER)
+        val FOLDER_COLOR: Icon = getIcon("/images/svg/folder_color.svg", CLASS_LOADER)
+        val GENERATE: Icon = getIcon("/images/svg/generate.svg", CLASS_LOADER)
+        val INK_ERASER: Icon = getIcon("/images/svg/ink_eraser.svg", CLASS_LOADER)
+        val REMOVE_RED: Icon = getIcon("/images/svg/remove.svg", CLASS_LOADER)
+        val SAVE: Icon = getIcon("/images/svg/save.svg", CLASS_LOADER)
+        val SAVE_ALL: Icon = getIcon("/images/svg/save_all.svg", CLASS_LOADER)
+        val SECURITY: Icon = getIcon("/images/svg/security.svg", CLASS_LOADER)
+        val SIGNATURE: Icon = getIcon("/images/svg/signature.svg", CLASS_LOADER)
+        val STYLUS_NOTE: Icon = getIcon("/images/svg/stylus_note.svg", CLASS_LOADER)
+        val TREE_NODE: Icon = getIcon("/images/svg/tree_node.svg", CLASS_LOADER)
     }
 }
