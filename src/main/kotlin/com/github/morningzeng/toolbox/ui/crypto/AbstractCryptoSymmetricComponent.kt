@@ -3,7 +3,7 @@ package com.github.morningzeng.toolbox.ui.crypto
 import com.fasterxml.jackson.core.type.TypeReference
 import com.github.morningzeng.toolbox.Constants.IconC
 import com.github.morningzeng.toolbox.model.CryptoSymmetric
-import com.github.morningzeng.toolbox.ui.dialog.SymmetricPropDialog
+import com.github.morningzeng.toolbox.ui.dialog.PropertySymmetricDialog
 import com.github.morningzeng.toolbox.utils.GridBagUtils
 import com.github.morningzeng.toolbox.utils.HumanUtils.maskSensitive
 import com.intellij.openapi.project.Project
@@ -92,7 +92,7 @@ abstract class AbstractCryptoSymmetricComponent(
             }
         }
         this.cryptoManageBtn.addActionListener {
-            SymmetricPropDialog(project, okAfter = {
+            PropertySymmetricDialog(project, okAfter = {
                 this.reloadCryptoProps()
             }, selectedAfter = {
                 this.cryptoPropComboBox.selectedItem = it

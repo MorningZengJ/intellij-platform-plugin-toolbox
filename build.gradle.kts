@@ -43,6 +43,11 @@ dependencies {
     implementation(libs.libraries.jackson.dataformat.yaml)
     implementation(libs.libraries.jackson.datatype.jsr310)
 
+    implementation(libs.libraries.zxing.core)
+    implementation(libs.libraries.zxing.javase)
+    implementation(libs.libraries.thumbnailator)
+    implementation(libs.libraries.hutool.crypto)
+    
     // IntelliJ Platform Gradle Plugin Dependencies Extension - read more: https://plugins.jetbrains.com/docs/intellij/tools-intellij-platform-gradle-plugin-dependencies-extension.html
     intellijPlatform {
         create(providers.gradleProperty("platformType"), providers.gradleProperty("platformVersion"))

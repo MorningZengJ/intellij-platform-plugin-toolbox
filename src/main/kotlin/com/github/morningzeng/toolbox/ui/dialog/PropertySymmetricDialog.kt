@@ -16,11 +16,11 @@ import java.awt.BorderLayout
  * @author Morning Zeng
  * @since 2025-05-20
  */
-class SymmetricPropDialog(
+class PropertySymmetricDialog(
     project: Project,
     okAfter: (ts: MutableList<CryptoSymmetric>) -> Unit = {},
     selectedAfter: (CryptoSymmetric) -> Unit
-) : AbstractPropDialog<CryptoSymmetric, SymmetricPropDialog.RightPanel>(project, okAfter, selectedAfter) {
+) : AbstractPropDialog<CryptoSymmetric, PropertySymmetricDialog.RightPanel>(project, okAfter, selectedAfter) {
 
     init {
         init()
@@ -51,9 +51,7 @@ class SymmetricPropDialog(
         }
     }
 
-    override fun createRightItemPanel(t: CryptoSymmetric): RightPanel {
-        return RightPanel(project, t)
-    }
+    override fun createRightItemPanel(t: CryptoSymmetric): RightPanel = RightPanel(project, t)
 
     class RightPanel(
         val project: Project,

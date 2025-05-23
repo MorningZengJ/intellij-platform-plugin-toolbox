@@ -19,7 +19,7 @@ import javax.swing.tree.TreePath
  */
 class Tree<T : Children<T>> : SimpleTree() {
 
-    private val root: DefaultMutableTreeNode = DefaultMutableTreeNode()
+    val root: DefaultMutableTreeNode = DefaultMutableTreeNode()
     private val treeModelT: DefaultTreeModel = DefaultTreeModel(root)
     private var ts: MutableList<T> = mutableListOf()
 

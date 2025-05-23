@@ -80,7 +80,7 @@ abstract class AbstractPropDialog<T : Children<T>, P : AbstractPropDialog.Abstra
         actionBar.layout = BoxLayout(actionBar, BoxLayout.LINE_AXIS)
     }
 
-    fun barActions(): Array<AnAction> {
+    open fun barActions(): Array<AnAction> {
         return arrayOf(addActions, deleteAction())
     }
 
@@ -96,7 +96,7 @@ abstract class AbstractPropDialog<T : Children<T>, P : AbstractPropDialog.Abstra
         }
     }
 
-    fun enabledNode(): Predicate<T?> = Predicate { true }
+    open fun enabledNode(): Predicate<T?> = Predicate { true }
 
     override fun createCenterPanel(): JComponent {
         createLeftPanel()

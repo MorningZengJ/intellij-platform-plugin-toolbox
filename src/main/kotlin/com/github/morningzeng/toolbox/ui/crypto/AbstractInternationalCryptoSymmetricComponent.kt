@@ -1,6 +1,6 @@
 package com.github.morningzeng.toolbox.ui.crypto
 
-import com.github.morningzeng.toolbox.enums.SymmetricCryptoEnum
+import com.github.morningzeng.toolbox.enums.CryptoSymmetricEnum
 import com.github.morningzeng.toolbox.model.CryptoSymmetric
 import com.github.morningzeng.toolbox.utils.GridBagUtils
 import com.intellij.openapi.project.Project
@@ -14,9 +14,9 @@ abstract class AbstractInternationalCryptoSymmetricComponent(
     project: Project
 ) : AbstractCryptoSymmetricComponent(project) {
 
-    private val cryptoComboBox: ComboBox<SymmetricCryptoEnum> =
-        SymmetricCryptoEnum.entries.filter { getType() == it.type }.toTypedArray().let {
-            ComboBox(it).apply { selectedItem = SymmetricCryptoEnum.AES_CBC_PKCS5 }
+    private val cryptoComboBox: ComboBox<CryptoSymmetricEnum> =
+        CryptoSymmetricEnum.entries.filter { getType() == it.type }.toTypedArray().let {
+            ComboBox(it).apply { selectedItem = CryptoSymmetricEnum.AES_CBC_PKCS5 }
         }
 
     init {

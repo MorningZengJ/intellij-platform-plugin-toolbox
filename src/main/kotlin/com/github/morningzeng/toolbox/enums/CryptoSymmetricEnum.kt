@@ -10,7 +10,7 @@ import javax.crypto.spec.SecretKeySpec
  * @author Morning Zeng
  * @since 2025-05-20
  */
-enum class SymmetricCryptoEnum(
+enum class CryptoSymmetricEnum(
     val type: String,
     val algorithm: String,
 ) {
@@ -334,7 +334,7 @@ enum class SymmetricCryptoEnum(
 
     interface Support {
         companion object {
-            fun crypto(crypto: SymmetricCryptoEnum, key: String, iv: String?): Support {
+            fun crypto(crypto: CryptoSymmetricEnum, key: String, iv: String?): Support {
                 return object : Support {
                     override fun encrypt(data: String): String = crypto.encrypt(data, key, iv)
 
@@ -343,7 +343,7 @@ enum class SymmetricCryptoEnum(
             }
 
             fun crypto(
-                crypto: SymmetricCryptoEnum,
+                crypto: CryptoSymmetricEnum,
                 key: String,
                 keyType: DataToBinaryTypeEnum,
                 iv: String?,

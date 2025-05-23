@@ -21,11 +21,14 @@ abstract class AbstractCryptoComponent<T : Children<T>>(
 
     override fun flatProps(props: MutableList<T>?): Stream<T> {
         return props?.stream()
+            ?.sorted(Children.comparable())
             ?.mapMulti { t, consumer ->
                 consumer.accept(t)
-                t.children.forEach { child -> consumer.accept(child) }
+                t.children.stream()
+                    .filter(filterProp())
+                    .sorted(Children.comparable())
+                    .forEach { consumer.accept(it) }
             }
-            ?.sorted(Children.comparable())
             ?: Stream.empty()
     }
 }

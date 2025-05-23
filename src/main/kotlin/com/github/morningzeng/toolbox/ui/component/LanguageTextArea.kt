@@ -26,12 +26,18 @@ class LanguageTextArea(
     project: Project,
     value: String = "",
     var language: Language = PlainTextLanguage.INSTANCE,
-    var readOnly: Boolean = false,
+    readOnly: Boolean = false,
     var showLineNumber: Boolean = true,
     var showHint: Boolean = false,
 ) : LanguageTextField(language, project, value, false) {
 
     var editor: EditorEx? = null
+
+    var readOnly: Boolean = readOnly
+        set(value) {
+            field = value
+            editor?.isViewer = value
+        }
 
     override fun createEditor(): EditorEx {
         val editorEx = super.createEditor()

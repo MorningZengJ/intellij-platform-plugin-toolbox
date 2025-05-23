@@ -21,7 +21,9 @@ import javax.swing.*
  * @author Morning Zeng
  * @since 2025-05-16
  */
-sealed class AbstractCryptoPropComponent<T>(protected open val project: Project) : JBPanel<JBPanelWithEmptyText>() {
+sealed class AbstractCryptoPropComponent<T>(
+    protected val project: Project
+) : JBPanel<JBPanelWithEmptyText>() {
 
     protected val cryptoPropComboBox: ComboBox<T> = ComboBox<T>()
     protected val cryptoManageBtn: JButton = JButton(General.Ellipsis)
@@ -43,7 +45,7 @@ sealed class AbstractCryptoPropComponent<T>(protected open val project: Project)
 
     protected abstract fun flatProps(props: MutableList<T>?): Stream<T>
 
-    protected fun filterProp(): Predicate<T> = Predicate { prop: T -> true }
+    protected open fun filterProp(): Predicate<T> = Predicate { prop: T -> true }
 
     protected fun setCryptoPropRenderer() {
         this.cryptoPropComboBox.renderer = ListCellRenderer { list, value, index, isSelected, cellHasFocus ->
