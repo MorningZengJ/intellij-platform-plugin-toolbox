@@ -13,7 +13,7 @@
         <toolWindow id="Toolset" icon="/images/svg/box.svg" anchor="bottom"
                     factoryClass="com.github.morningzeng.toolbox.ToolboxWindow"/>
         <!--        factoryClass="org.jetbrains.plugins.template.toolWindow.MyToolWindowFactory"/>-->
-        <postStartupActivity implementation="org.jetbrains.plugins.template.startup.MyProjectActivity"/>
+        <!--        <postStartupActivity implementation="org.jetbrains.plugins.template.startup.MyProjectActivity"/>-->
 
         <notificationGroup displayType="STICKY_BALLOON" id="remind-notify"
                            toolWindowId="com.github.MorningZengJ.Toolset" bundle="messages.MyBundle"

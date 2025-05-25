@@ -20,6 +20,11 @@ class PropertyHashDialog(
     selectedAfter: (CryptoHash) -> Unit = {}
 ) : AbstractPropDialog<CryptoHash, PropertyHashDialog.RightPanel>(project, okAfter, selectedAfter) {
 
+    init {
+        init()
+        title = "Hash Properties"
+    }
+
     override fun typeReference(): TypeReference<MutableList<CryptoHash>> =
         object : TypeReference<MutableList<CryptoHash>>() {}
 
