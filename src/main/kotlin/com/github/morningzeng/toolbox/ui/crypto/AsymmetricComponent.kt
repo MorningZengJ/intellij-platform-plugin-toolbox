@@ -10,6 +10,7 @@ import com.github.morningzeng.toolbox.utils.GridBagUtils.GridBagFill
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.ui.ComboBox
 import com.intellij.openapi.ui.Messages
+import java.util.*
 import java.util.function.Predicate
 import javax.swing.JButton
 
@@ -155,8 +156,9 @@ class AsymmetricComponent(
 
     override fun filterProp(): Predicate<CryptoAsymmetric> {
         return Predicate {
-            if (cryptoComboBox.item == null) false
-            else cryptoComboBox.item == it.crypto
+            Optional.ofNullable(cryptoComboBox)
+                .map { crypto -> crypto.item == it.crypto }
+                .orElse(false)
         }
     }
 

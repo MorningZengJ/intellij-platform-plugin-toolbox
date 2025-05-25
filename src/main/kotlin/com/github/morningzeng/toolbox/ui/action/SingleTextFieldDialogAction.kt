@@ -3,7 +3,6 @@ package com.github.morningzeng.toolbox.ui.action
 import com.github.morningzeng.toolbox.ui.dialog.SingleTextFieldDialog
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
-import com.intellij.openapi.ui.DialogWrapper
 import javax.swing.Icon
 
 /**
@@ -18,12 +17,7 @@ open class SingleTextFieldDialogAction(
     description: String? = null,
 ) : AnAction(text, description, icon) {
 
-    private var dialogWrapper: DialogWrapper? = null
-
     override fun actionPerformed(e: AnActionEvent) {
-        if (dialogWrapper == null) {
-            dialogWrapper = SingleTextFieldDialog(title, "Name", clickOk)
-        }
-        dialogWrapper?.showAndGet()
+        SingleTextFieldDialog(title, "Name", clickOk).showAndGet()
     }
 }

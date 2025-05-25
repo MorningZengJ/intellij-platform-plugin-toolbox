@@ -46,8 +46,8 @@ abstract class AbstractCryptoSymmetricComponent(
             }
             .row {
                 GridBagUtils.builder()
-                    .row {
-                        it.fill(GridBagUtils.GridBagFill.HORIZONTAL)
+                    .row { r ->
+                        r.fill(GridBagUtils.GridBagFill.HORIZONTAL)
                             .cell().add(encryptBtn)
                             .cell().add(decryptBtn)
                     }

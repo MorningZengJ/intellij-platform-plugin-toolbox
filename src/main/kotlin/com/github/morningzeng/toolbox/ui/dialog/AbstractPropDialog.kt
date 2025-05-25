@@ -107,8 +107,9 @@ abstract class AbstractPropDialog<T : Children<T>, P : AbstractPropDialog.Abstra
     }
 
     override fun doOKAction() {
-        applyProp()
         super.doOKAction()
+        applyProp()
+        tree.getSelectedValue()?.let { selectedAfter(it) }
     }
 
     override fun createActions(): Array<out Action?> {
@@ -116,6 +117,7 @@ abstract class AbstractPropDialog<T : Children<T>, P : AbstractPropDialog.Abstra
             object : DialogWrapperAction("Apply") {
                 override fun doAction(e: ActionEvent?) {
                     applyProp()
+                    tree.getSelectedValue()?.let { selectedAfter(it) }
                 }
             },
             *super.createActions()

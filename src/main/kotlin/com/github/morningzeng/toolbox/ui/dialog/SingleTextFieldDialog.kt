@@ -26,12 +26,15 @@ class SingleTextFieldDialog(
     }
 
     override fun createCenterPanel(): JComponent {
-        textField.requestFocusInWindow()
         return JBPanel<JBPanelWithEmptyText>().apply {
             layout = BoxLayout(this, BoxLayout.LINE_AXIS)
             add(JBLabel(label))
             add(textField)
         }
+    }
+
+    override fun getPreferredFocusedComponent(): JComponent? {
+        return textField
     }
 
     override fun doOKAction() {

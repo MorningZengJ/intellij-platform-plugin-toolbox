@@ -11,7 +11,7 @@ import com.github.morningzeng.toolbox.enums.CryptoAsymmetricEnum
 data class CryptoAsymmetric(
     var title: String = "",
     var key: String = "",
-    var crypto: CryptoAsymmetricEnum,
+    var crypto: CryptoAsymmetricEnum = CryptoAsymmetricEnum.RSA,
     var isPublicKey: Boolean = true,
     var description: String = "",
 ) : Children<CryptoAsymmetric>() {

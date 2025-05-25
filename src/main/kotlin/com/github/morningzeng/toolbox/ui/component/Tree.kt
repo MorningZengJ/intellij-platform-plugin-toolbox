@@ -45,29 +45,26 @@ class Tree<T : Children<T>> : SimpleTree() {
     fun create(t: T, allowsChildren: Boolean): DefaultMutableTreeNode {
         val treeNode = DefaultMutableTreeNode(t, allowsChildren)
         val selectedNode = lastSelectedPathComponent?.let { it as DefaultMutableTreeNode }
-        if (root != selectedNode) {
-            if (selectedNode != null) {
-                root.add(treeNode)
-                ts.add(t)
-                reloadTree(null)
-
-            } else {
-                selectedNode?.also {
-                    if (it.allowsChildren) {
-                        it.add(treeNode)
-                        getSelectedValue()?.also { sv -> sv.addChild(t) }
-                        treeModelT.reload(it)
-                        expandPath(TreePath(treeNode.path))
-                    } else {
-                        val parentNode = it.parent as DefaultMutableTreeNode
-                        parentNode.add(treeNode)
-                        getNodeValue(parentNode)?.also { sv -> sv.addChild(t) }
-                        treeModelT.reload(parentNode)
-                        expandPath(TreePath(parentNode.path))
-                        if (root == parentNode) ts.add(t)
-                    }
+        if (selectedNode != null && root != selectedNode) {
+            selectedNode.also {
+                if (it.allowsChildren) {
+                    it.add(treeNode)
+                    getSelectedValue()?.also { sv -> sv.addChild(t) }
+                    treeModelT.reload(it)
+                    expandPath(TreePath(treeNode.path))
+                } else {
+                    val parentNode = it.parent as DefaultMutableTreeNode
+                    parentNode.add(treeNode)
+                    getNodeValue(parentNode)?.also { sv -> sv.addChild(t) }
+                    treeModelT.reload(parentNode)
+                    expandPath(TreePath(parentNode.path))
+                    if (root == parentNode) ts.add(t)
                 }
             }
+        } else {
+            root.add(treeNode)
+            ts.add(t)
+            reloadTree(null)
         }
         TreeUtil.selectNode(this, treeNode)
         return treeNode
