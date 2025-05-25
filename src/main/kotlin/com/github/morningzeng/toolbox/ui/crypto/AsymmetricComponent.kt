@@ -164,7 +164,7 @@ class AsymmetricComponent(
 
     private fun setButtonsVisible() {
         cryptoPropComboBox.item?.let {
-            if (it.directory) {
+            if (!it.directory) {
                 encryptBtn.isEnabled = true
                 decryptBtn.isEnabled = true
                 signBtn.isEnabled = true
