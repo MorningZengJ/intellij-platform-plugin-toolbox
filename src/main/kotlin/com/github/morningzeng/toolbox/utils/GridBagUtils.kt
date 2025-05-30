@@ -11,6 +11,7 @@ import java.awt.GridBagLayout
  * @author Morning Zeng
  * @since 2025-05-20
  */
+@Suppress("unused")
 object GridBagUtils {
 
     fun builder(): GridBagBuilder<JBPanel<JBPanelWithEmptyText>> = builder(JBPanel<JBPanelWithEmptyText>())
@@ -46,7 +47,7 @@ object GridBagUtils {
             bag.gridy++
             bag.weightx = 0.0
             bag.gridwidth = 1
-            consumer(Row<T>(this, bag))
+            consumer(Row(this, bag))
             return this
         }
 
